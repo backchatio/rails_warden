@@ -86,7 +86,7 @@ if !defined?(Rails::Railtie)
   end
 else
   class RailsWarden::Railtie < Rails::Railtie
-    include_block = lambda do
+    include_block = Proc.new do  #lambda isn't strictly necessary we don't need the closure or return value
       ::ActionController::Base.class_eval do
         include RailsWarden::Mixins::HelperMethods
         include RailsWarden::Mixins::ControllerOnlyMethods
